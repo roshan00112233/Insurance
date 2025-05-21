@@ -1,0 +1,58 @@
+# Ignore build results
+bin/
+obj/
+out/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Rider project files
+.idea/
+
+# VS Code settings
+.vscode/
+
+# Resharper settings
+*.DotSettings.user
+
+# Web config
+wwwroot/
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json  # Optional, if you want to keep all config private
+
+# Sensitive config
+secrets.json
+*.pfx
+*.key
+*.cer
+
+# Logs
+*.log
+logs/
+
+# Entity Framework
+Migrations/
+
+# Dotnet-specific
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Environment
+.env
+
+# Node/npm (if using for frontend)
+node_modules/
+npm-debug.log
+
+# OS files
+.DS_Store
+Thumbs.db
+.vs/
