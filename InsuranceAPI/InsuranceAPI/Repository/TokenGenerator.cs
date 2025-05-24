@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace InsuranceAPI.Repository
 {
@@ -24,9 +25,9 @@ namespace InsuranceAPI.Repository
             //Claims
             var claims = new List<Claim>
            {
-               new claim(ClaimTypes.Name, user.UserName?? ""),
-               new claim(ClaimTypes.Email, user.Email?? ""),
-               new claim(ClaimTypes.NameIdentifier, user.Id),
+               new Claim(ClaimTypes.Name, user.UserName?? ""),
+               new Claim(ClaimTypes.Email, user.Email?? ""),
+               new Claim(ClaimTypes.NameIdentifier, user.Id),
 
            };
 
@@ -37,7 +38,15 @@ namespace InsuranceAPI.Repository
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"])); 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-
+            //jwt token
+            var token = new JwtSecurityToken(
+                issuer: _config["Jwt:Issuer"],
+                audience: _config["Jwt:Audience"],
+                claims: claims,
+              expires: DateTime.Now.AddMinutes(Convert.ToDouble(_config["Jwt:DurationInMinutes"])),
+                signingCredentials: creds
+            );
+            return new JwtSecurityTokenHandler().WriteToken(token);
 
         }
 
