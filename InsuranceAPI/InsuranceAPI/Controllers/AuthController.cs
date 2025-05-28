@@ -26,7 +26,7 @@ namespace InsuranceAPI.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register(UserDTO model)
+        public async Task<IActionResult> Register([FromBody]UserDTO model)
         {
             var user = new ApplicationUser
             {
@@ -55,11 +55,12 @@ namespace InsuranceAPI.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login(UserDTO model)
+        public async Task<IActionResult> Login([FromBody]UserDTO model)
+
         {
             var user = await _userManager.FindByEmailAsync(model.Email); 
             var password = await _userManager.CheckPasswordAsync(user, model.Password);
-            if(user == null || !password)
+            if(user == null || !password || user.FirstName != model.FullName)
             {
                 return Unauthorized("Invalid credentials");
             }

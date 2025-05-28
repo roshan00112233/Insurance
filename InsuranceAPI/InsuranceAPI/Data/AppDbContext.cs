@@ -1,6 +1,8 @@
 ﻿using InsuranceAPI.Models.Domain;
+using InsuranceAPI.Models.DTO;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace InsuranceAPI.Data
 {
@@ -9,7 +11,6 @@ namespace InsuranceAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
-       
     }
 
 }

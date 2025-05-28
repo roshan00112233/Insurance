@@ -43,7 +43,7 @@ namespace InsuranceAPI.Repository
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-              expires: DateTime.Now.AddMinutes(Convert.ToDouble(_config["Jwt:DurationInMinutes"])),
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_config["Jwt:DurationInMinutes"])),
                 signingCredentials: creds
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
