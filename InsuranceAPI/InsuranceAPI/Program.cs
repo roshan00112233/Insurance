@@ -8,6 +8,7 @@ using InsuranceAPI.Models.Domain;
 using InsuranceAPI.Repository;
 using InsuranceAPI.Repository.CustomerRegistration;
 using Microsoft.OpenApi.Models;
+using InsuranceAPI.Repository.RolesManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,7 @@ builder.Services.AddSwaggerGen(options =>
 
 builder.Services.AddScoped<TokenGenerator>();
 builder.Services.AddScoped<ICustomertRegistration, CustomertRegistration>();
+builder.Services.AddSingleton<IRolesManagement, IdentitySeed>();
 
 
 builder.Services.AddEndpointsApiExplorer();
